@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Word Counter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            width: 420px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            resize: none;
+            font-size: 14px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #444;
+            background: #f5f7ff;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .freq {
+            margin-top: 15px;
+            text-align: left;
+            background: #eef1ff;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .footer {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>📝 Word Counter</h2>
+
+    <form method="POST">
+        <textarea name="text" placeholder="Type or paste your text here..."></textarea>
+        <button type="submit">Count Words</button>
+    </form>
+
+    {% if word_count is not none %}
+        <div class="result">
+            <strong>Words:</strong> {{ word_count }} <br>
+            <strong>Characters:</strong> {{ char_count }}
+        </div>
+    {% endif %}
+
+    {% if word_freq %}
+        <div class="freq">
+            <strong>Word Frequency:</strong>
+            <ul>
+                {% for word, count in word_freq.items() %}
+                    <li>{{ word }} : {{ count }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <div class="footer">
+        Built by hunter20020511 
+    </div>
+</div>
+
+</body>
+</html>
